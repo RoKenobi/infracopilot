@@ -1,20 +1,76 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# 🛠️ InfraCopilot  
+*GenAI-Powered CLI for Debugging Cloud & Container Errors*
 
-# Run and deploy your AI Studio app
+[![Run in AI Studio](https://img.shields.io/badge/AI_Studio-Deployed-blue?logo=google)](https://ai.studio/apps/drive/1uMihh1X1XhkPwgdhfPoevIB5XxRexZZH)
 
-This contains everything you need to run your app locally.
+InfraCopilot uses **Google Gemini** to transform cryptic infrastructure errors (Docker, Kubernetes, SELinux, AWS) into actionable SRE-style guidance:  
+✅ **Root Cause** | ✅ **Fix** (with commands) | ✅ **Prevention**
 
-View your app in AI Studio: https://ai.studio/apps/drive/1uMihh1X1XhkPwgdhfPoevIB5XxRexZZH
+Built for engineers who debug cloud-native systems—and want AI that *understands production realities*, not just theory.
 
-## Run Locally
+> *“Why is my container crashing? Paste the error. Get the fix.”*
 
-**Prerequisites:**  Node.js
+---
 
+## 🚀 Run Locally
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+### Prerequisites
+- [Node.js](https://nodejs.org/) (v18+)
+- [Gemini API Key](https://aistudio.google.com/app/apikey)
+
+### Setup
+1. Install dependencies:  
+   ```bash
+   npm install
+   ```
+2. Add your API key to `.env.local`:  
+   ```env
+   GEMINI_API_KEY=your_api_key_here
+   ```
+3. Start the app:  
+   ```bash
+   npm run dev
+   ```
+
+---
+
+## 💡 Sample Use Case
+**Input error**:  
+`docker: Error response from daemon: permission denied while trying to connect to the Docker daemon socket`
+
+**InfraCopilot output**:  
+```
+ROOT CAUSE: Non-root user lacks permissions to access Docker socket (/var/run/docker.sock)  
+FIX: Add user to docker group: sudo usermod -aG docker $USER && newgrp docker  
+PREVENTION: Avoid direct socket access in CI/CD; use rootless Docker or Podman for security
+```
+
+---
+
+## 🌐 Deploy Your Own
+- **AI Studio**: [One-click deploy](https://ai.studio/apps/drive/1uMihh1X1XhkPwgdhfPoevIB5XxRexZZH)  
+- **Self-host**: Build with `npm run build` → deploy to any Node.js platform (Railway, Render, etc.)
+
+---
+
+## 🛡️ Security Note
+- Never commit `.env.local` to version control  
+- Restrict Gemini API keys to `http://localhost:*` during development  
+- In production, use short-lived credentials and audit logs
+
+---
+
+## 🤝 Why This Matters
+This tool mirrors real-world SRE workflows at companies like **Visa**, where:  
+- GenAI augments (not replaces) human expertise  
+- Security hardening (SELinux, PoLP) is non-negotiable  
+- Clear runbooks prevent repeat incidents  
+
+*Ideal for aspiring infrastructure engineers, DevOps practitioners, and VC analysts evaluating infra-heavy startups.*
+
+---
+
+✨ **Contribute**: PRs welcome! Especially for adding error templates (AWS/GCP/K8s).  
+📄 **License**: MIT
+
+---
