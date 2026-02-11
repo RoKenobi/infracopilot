@@ -1,0 +1,5 @@
+{
+  "name": "InfraCopilot Web",
+  "description": "A GenAI-powered SRE troubleshooting assistant. Analyze infrastructure error logs directly in the browser or generate the Python CLI tool for your terminal.",
+  "requestFramePermissions": []
+}
